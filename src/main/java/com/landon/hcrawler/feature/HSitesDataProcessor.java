@@ -26,6 +26,13 @@ public class HSitesDataProcessor {
      * @return HSitesDataProcessor
      */
     public HSitesDataProcessor sortByAsc() {
+        if (hSitesData != null) {
+            this.hSitesData = hSitesData.chars()
+                .sorted()
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+        }
+
         return this;
     }
 

@@ -38,4 +38,35 @@ public class HSitesDataProcessorTest {
         // Then
         assertNull(result);
     }
+
+    @Test
+    @DisplayName("sortByAsc - 오름차순으로 정렬할 수 있다.")
+    public void testSortByAsc() {
+        // Given
+        String hSitesData = "152AFAAvbw2314";
+        HSitesDataProcessor processor = new HSitesDataProcessor(hSitesData);
+
+        // When
+        String result = processor
+            .sortByAsc()
+            .getData();
+
+        // Then
+        assertEquals("1122345AAAFbvw", result);
+    }
+
+    @Test
+    @DisplayName("sortByAsc - 데이터가 null인 경우 아무 처리도 하지 않는다.")
+    public void testSortByAscNull() {
+        // Given
+        HSitesDataProcessor processor = new HSitesDataProcessor(null);
+
+        // When
+        String result = processor
+            .sortByAsc()
+            .getData();
+
+        // Then
+        assertNull(result);
+    }
 }
