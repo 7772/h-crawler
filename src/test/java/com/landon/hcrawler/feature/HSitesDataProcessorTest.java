@@ -40,30 +40,30 @@ public class HSitesDataProcessorTest {
     }
 
     @Test
-    @DisplayName("sortByAsc - 오름차순으로 정렬할 수 있다.")
-    public void testSortByAsc() {
+    @DisplayName("distinct - 중복된 문자를 제거하고, 오름차순 정렬할 수 있다.")
+    public void testDistinctAndSortByAsc() {
         // Given
-        String hSitesData = "152AFAAvbw2314";
+        String hSitesData = "111AACCii1r3asdhfliiqwoefmnoaiwdr9081289";
         HSitesDataProcessor processor = new HSitesDataProcessor(hSitesData);
 
         // When
         String result = processor
-            .sortByAsc()
+            .distinctAndSortByAsc()
             .getData();
 
         // Then
-        assertEquals("1122345AAAFbvw", result);
+        assertEquals("012389ACadefhilmnoqrsw", result);
     }
 
     @Test
-    @DisplayName("sortByAsc - 데이터가 null인 경우 아무 처리도 하지 않는다.")
-    public void testSortByAscNull() {
+    @DisplayName("distinct - 데이터가 null 인 경우 아무 처리도 하지 않는다.")
+    public void testDistinctAndSortByAscNull() {
         // Given
         HSitesDataProcessor processor = new HSitesDataProcessor(null);
 
         // When
         String result = processor
-            .sortByAsc()
+            .distinctAndSortByAsc()
             .getData();
 
         // Then

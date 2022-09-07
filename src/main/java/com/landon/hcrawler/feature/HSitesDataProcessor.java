@@ -22,25 +22,18 @@ public class HSitesDataProcessor {
     }
 
     /**
-     * 오름차순으로 정렬하는 함수
+     * 중복된 문자를 제거하고, 오름차순으로 정렬하는 함수
      * @return HSitesDataProcessor
      */
-    public HSitesDataProcessor sortByAsc() {
+    public HSitesDataProcessor distinctAndSortByAsc() {
         if (hSitesData != null) {
             this.hSitesData = hSitesData.chars()
+                .distinct()
                 .sorted()
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
         }
 
-        return this;
-    }
-
-    /**
-     * 중복된 문자를 제거하는 함수
-     * @return HSitesDataProcessor
-     */
-    public HSitesDataProcessor distinct() {
         return this;
     }
 
