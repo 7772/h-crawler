@@ -43,7 +43,7 @@ public class HSitesDataProcessorTest {
     @DisplayName("distinct - 중복된 문자를 제거하고, 오름차순 정렬할 수 있다.")
     public void testDistinctAndSortByAsc() {
         // Given
-        String hSitesData = "111AACCii1r3asdhfliiqwoefmnoaiwdr9081289";
+        String hSitesData = "html124divABCDefgtaBlelmg1";
         HSitesDataProcessor processor = new HSitesDataProcessor(hSitesData);
 
         // When
@@ -52,7 +52,7 @@ public class HSitesDataProcessorTest {
             .getData();
 
         // Then
-        assertEquals("012389ACadefhilmnoqrsw", result);
+        assertEquals("AaBCDdefghilmtv124", result);
     }
 
     @Test

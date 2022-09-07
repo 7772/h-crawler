@@ -1,13 +1,23 @@
 package com.landon.hcrawler.feature;
 
-import lombok.AllArgsConstructor;
+import java.util.Comparator;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @AllArgsConstructor
 public class HSitesDataProcessor {
 
     private String hSitesData;
 
     private static final String REGEX_ONLY_ALPHANUMERIC = "[^A-Za-z0-9]";
+    private static final Pattern PATTERN_NUMERIC = Pattern.compile("^\\d+");
+
 
     /**
      * 영문, 숫자만 존재하도록 파싱하는 함수
@@ -22,16 +32,48 @@ public class HSitesDataProcessor {
     }
 
     /**
-     * 중복된 문자를 제거하고, 오름차순으로 정렬하는 함수
+     * 중복된 문자를 제거하고, 특정한 규칙이 적용된 오름차순으로 정렬하는 함수
      * @return HSitesDataProcessor
      */
     public HSitesDataProcessor distinctAndSortByAsc() {
         if (hSitesData != null) {
             this.hSitesData = hSitesData.chars()
                 .distinct()
-                .sorted()
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
+                .mapToObj(Character::toString)
+                .sorted((a, b) -> {
+                    Matcher matcherA = PATTERN_NUMERIC.matcher(a);
+                    Matcher matcherB = PATTERN_NUMERIC.matcher(b);
+
+                    boolean isNumericA = matcherA.find();
+                    boolean isNumericB = matcherB.find();
+
+                    if (!isNumericA) {
+                        if (isNumericB) {
+                            // 숫자를 뒤로
+                            return b.compareTo(a);
+                        } else {
+                            if (a.equalsIgnoreCase(b)) {
+                                // a와 b가 같은 알파벳일 경우에는 대소문자 구분
+                                return a.compareTo(b);
+                            } else {
+                                // a와 b가 다른 알파벳일 경우에는 대소문자 구분 X
+                                return a.compareToIgnoreCase(b);
+                            }
+                        }
+                    } else {
+                        if (!isNumericB) {
+                            // 숫자를 뒤로
+                            return b.compareTo(a);
+                        } else {
+                            // a와 b가 모두 숫자인 경우
+                            Integer number1 = Integer.parseInt(a);
+                            Integer number2 = Integer.parseInt(b);
+
+                            return number1.compareTo(number2);
+                        }
+                    }
+                })
+                .collect(Collectors.joining());
         }
 
         return this;
