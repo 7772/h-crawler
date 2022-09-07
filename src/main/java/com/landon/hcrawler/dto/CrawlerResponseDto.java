@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class CrawlerResponseDto {
+
     @JsonProperty("Status")
     private final int status;
 
