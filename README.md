@@ -6,6 +6,7 @@
 
 ## API
 
+- cURL: `$ curl localhost:8080`
 - Method: GET
 - URL: `/`
 - Request: 없음

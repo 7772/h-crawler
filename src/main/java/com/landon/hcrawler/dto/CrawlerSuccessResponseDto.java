@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CrawlerResponseDto {
+public class CrawlerSuccessResponseDto {
 
     @JsonProperty("Status")
     private final int status;

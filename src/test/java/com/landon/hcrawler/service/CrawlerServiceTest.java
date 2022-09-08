@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.landon.hcrawler.dto.CrawlerResponseDto;
+import com.landon.hcrawler.dto.CrawlerSuccessResponseDto;
 import com.landon.hcrawler.feature.AsyncCrawler;
 import com.landon.hcrawler.feature.HSitesCollector;
 
@@ -27,13 +27,13 @@ public class CrawlerServiceTest {
     private HSitesCollector hSitesCollector;
 
     @Test
-    @DisplayName("CrawlerResponseDto 인스턴스를 반환할 수 있다.")
+    @DisplayName("CrawlerSuccessResponseDto 인스턴스를 반환할 수 있다.")
     public void testSuccessCase() {
         // Given
         given(hSitesCollector.collectAndMerge()).willReturn("mergeresult123");
 
         // When
-        CrawlerResponseDto result = crawlerService.crawl();
+        CrawlerSuccessResponseDto result = crawlerService.crawl();
 
         // Then
         assertNotNull(result);

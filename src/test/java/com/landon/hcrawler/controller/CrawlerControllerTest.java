@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.landon.hcrawler.dto.CrawlerResponseDto;
+import com.landon.hcrawler.dto.CrawlerSuccessResponseDto;
 import com.landon.hcrawler.exception.CrawlerTimeoutException;
 import com.landon.hcrawler.service.CrawlerService;
 
@@ -42,7 +42,7 @@ public class CrawlerControllerTest {
     public void testSuccessCase() throws Exception {
         // Given
         given(crawlerService.crawl())
-            .willReturn(new CrawlerResponseDto(200, "TEST"));
+            .willReturn(new CrawlerSuccessResponseDto(200, "TEST"));
 
         // When & Then
         mvc.perform(MockMvcRequestBuilders.get("/"))
