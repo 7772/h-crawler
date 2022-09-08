@@ -11,9 +11,16 @@
 - Request: 없음,
 - Response:
     ```
+    // Success case
     {
         "Status": 200,
         "Merge": "AaB2C4Ddefg"
+    }
+  
+    // Failure case
+    {
+        "Status": 422,
+        "Error": "ERROR_MESSAGE",
     }
     ```
 - Timeout: 5000ms

@@ -1,5 +1,6 @@
 package com.landon.hcrawler.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ public class CrawlerController {
     private final CrawlerService crawlerService;
 
     @GetMapping("/")
-    public CrawlerResponseDto crawl() {
-        return crawlerService.crawl();
+    public ResponseEntity<CrawlerResponseDto> crawl() {
+        return ResponseEntity.ok(crawlerService.crawl());
     }
 }

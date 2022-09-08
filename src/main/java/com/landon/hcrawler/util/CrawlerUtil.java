@@ -28,7 +28,7 @@ public class CrawlerUtil {
      * @param url - 파싱 처리할 URL 문자열
      * @return 파싱 처리된 문자열
      * @throws CrawlerIOException 파싱 처리 시 IO Exception 발생한 경우
-     * @throws CrawlerTimeoutException Connection Timeout (3000ms) 발생한 경우
+     * @throws CrawlerTimeoutException Connection Timeout (5000ms) 발생한 경우
      */
     public static String crawl(String url) {
         try {
