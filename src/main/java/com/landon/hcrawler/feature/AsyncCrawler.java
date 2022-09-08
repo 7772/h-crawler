@@ -6,6 +6,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.springframework.stereotype.Component;
+
 import com.landon.hcrawler.util.CrawlerUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  * 비동기로 데이터를 크롤링하는 역할을 담당하는 클래스
  */
 @Slf4j
+@Component
 public class AsyncCrawler {
 
     public List<String> run(List<String> urls) {

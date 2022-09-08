@@ -3,6 +3,8 @@ package com.landon.hcrawler.feature;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -10,6 +12,7 @@ import lombok.RequiredArgsConstructor;
  *
  * 3가지 사이트의 데이터를 수집, 머지하는 역할을 담당하는 클래스
  */
+@Component
 @RequiredArgsConstructor
 public class HSitesCollector {
 

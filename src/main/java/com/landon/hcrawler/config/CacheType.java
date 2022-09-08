@@ -7,7 +7,7 @@ import lombok.experimental.FieldNameConstants;
 @FieldNameConstants(onlyExplicitlyIncluded = true)
 public enum CacheType {
     @FieldNameConstants.Include
-    H_SITE_CRAWLING_RESULT(1, 1000),
+    H_SITE_CRAWLING_RESULT(1, 1),
     ;
 
     private final int expireMinutes;

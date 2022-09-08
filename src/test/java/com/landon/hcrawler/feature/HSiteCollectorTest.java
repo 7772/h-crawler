@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = AsyncCrawler.class)
 public class HSiteCollectorTest {
-
     @Mock
     private AsyncCrawler asyncCrawler;
 

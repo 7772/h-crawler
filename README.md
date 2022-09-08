@@ -16,3 +16,5 @@
         "Merge": "AaB2C4Ddefg"
     }
     ```
+- Timeout: 5000ms
+- Cache: 1m

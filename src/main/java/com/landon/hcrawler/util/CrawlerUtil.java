@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class CrawlerUtil {
 
-    private static final int TIMEOUT_MILLIS = 3000;
+    private static final int TIMEOUT_MILLIS = 5000;
 
     /**
      *
