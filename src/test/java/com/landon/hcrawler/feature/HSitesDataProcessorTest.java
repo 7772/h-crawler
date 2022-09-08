@@ -3,8 +3,14 @@ package com.landon.hcrawler.feature;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class HSitesDataProcessorTest {
 
@@ -68,5 +74,44 @@ public class HSitesDataProcessorTest {
 
         // Then
         assertNull(result);
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideCrossTestParameters")
+    @DisplayName("cross - 대문자소문자숫자 순서로 데이터를 교차할 수 있다.")
+    public void testCross(String hSitesData, String answer) {
+        // Given
+        HSitesDataProcessor processor = new HSitesDataProcessor(hSitesData);
+
+        // When
+        String result = processor
+            .cross()
+            .getData();
+
+        // Then
+        assertEquals(answer, result);
+    }
+
+    @Test
+    @DisplayName("cross - 데이터가 null 인 경우 아무 처리도 하지 않는다.")
+    public void testCrossNull() {
+        // Given
+        HSitesDataProcessor processor = new HSitesDataProcessor(null);
+
+        // When
+        String result = processor
+            .cross()
+            .getData();
+
+        // Then
+        assertNull(result);
+    }
+
+    static Stream<Arguments> provideCrossTestParameters() {
+        return Stream.of(
+            Arguments.arguments("AaBCDdefghilmtv124", "Aa1B2C4Ddefghilmtv"),
+            Arguments.arguments("AaBCDdl012456789", "Aa0B1C2Dd4l56789"),
+            Arguments.arguments("AaBCDdEFGHLlNOQSsUuVYZ0123456789", "Aa0B1C2Dd3El4Fs5Gu6H7L8N9OQSUVYZ")
+        );
     }
 }
