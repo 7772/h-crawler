@@ -21,6 +21,12 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class AsyncCrawler {
 
+    /**
+     * Thread Executor는 전달된 URL의 size 만큼 생성한다.
+     *
+     * @param urls - 크롤링할 URL을 담은 리스트
+     * @return List<String> - 각 URL을 크롤링한 결과 리스트
+     */
     public List<String> run(List<String> urls) {
         List<CompletableFuture<Void>> crawlRequests = new ArrayList<>();
         ExecutorService executorService = Executors.newFixedThreadPool(urls.size());

@@ -8,7 +8,7 @@
 
 - Method: GET
 - URL: `/`
-- Request: 없음,
+- Request: 없음
 - Response:
     ```
     // Success case

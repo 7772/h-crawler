@@ -19,7 +19,6 @@ public class HSitesDataProcessor {
     private static final String REGEX_ONLY_ALPHANUMERIC = "[^A-Za-z0-9]";
     private static final Pattern PATTERN_NUMERIC = Pattern.compile("^\\d+");
 
-
     /**
      * 영문, 숫자만 존재하도록 파싱하는 함수
      * @return HSitesDataProcessor
